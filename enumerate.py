@@ -9,7 +9,7 @@ for user in users_list:
             "username": user,
             "password": password
         }
-        response = requests.post("http://localhost:5000/users/v1/login", json=data)
+        response = requests.post("http://localhost:5000/users/v1/login", json=data, timeout=5)
         body = response.json()
         if body["message"] == password_error_message:
             print(f"User {user} does exist, checking passwords")
