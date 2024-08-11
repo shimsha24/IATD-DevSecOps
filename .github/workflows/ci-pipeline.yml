@@ -23,6 +23,20 @@ jobs:
         with:
           name: test-results
           path: junit/test-results.xml
+  sonarqube:
+            needs: test
+            if: false
+            runs-on: ubuntu-latest
+            steps:
+            - uses: actions/checkout@v3
+              with:
+                # Disabling shallow clones is recommended for improving the relevancy of reporting
+                fetch-depth: 0
+            - name: SonarQube Scan
+              uses: sonarsource/sonarqube-scan-action@master
+              env:
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
   dast:
             needs: [test, sonarqube]
             runs-on: ubuntu-latest
@@ -84,20 +98,6 @@ jobs:
                 with:
                         name: zap-report
                         path: report_json.json       
-  sonarqube:
-    needs: test
-    if: false
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        # Disabling shallow clones is recommended for improving the relevancy of reporting
-        fetch-depth: 0
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
   build:
       needs: test
       runs-on: ubuntu-latest
