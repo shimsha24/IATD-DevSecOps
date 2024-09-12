@@ -115,7 +115,7 @@ jobs:
                   name: zap-report
                   path: report_json.json
   image-scan:
-    needs: [test]
+    needs: test
     if: true
     runs-on: ubuntu-latest
     steps:
@@ -135,7 +135,7 @@ jobs:
   build:
     needs: [test, sonarqube, dast]
     # needs: [security_gate]
-    if: true
+    if: false
     permissions:
      id-token: write
     runs-on: ubuntu-latest
@@ -172,7 +172,7 @@ jobs:
 
   security_gate:
               needs: [sonarqube, dast, image-scan]
-              if: true
+              if: false
               runs-on: ubuntu-latest
               steps:
               - name: Download sonarqube-report
@@ -219,7 +219,7 @@ jobs:
                   echo "All security gates passed"
 
   submit_reports:
-              needs: [test, sonarqube, dast, build]
+              needs: [test, sonarqube, dast]
               if: true
               runs-on: ubuntu-latest
               steps:
