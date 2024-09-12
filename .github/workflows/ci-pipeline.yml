@@ -54,7 +54,7 @@ jobs:
   
   dast:
     needs: test
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -119,7 +119,7 @@ jobs:
                   path: report_json.json
   image-scan:
     needs: test
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
         - name: Scan image
@@ -136,7 +136,7 @@ jobs:
             name: image-report
             path: ${{ steps.image-scan.outputs.json }}
   build:
-    needs: [test, sonarqube]
+    needs: [test, sonarqube, dast]
     # needs: [security_gate]
     if: true
     permissions:
@@ -175,7 +175,7 @@ jobs:
 
   security_gate:
               needs: [sonarqube, dast, image-scan]
-              if: false
+              if: true
               runs-on: ubuntu-latest
               steps:
               - name: Download sonarqube-report
@@ -224,7 +224,7 @@ jobs:
   submit_reports:
     needs: [test, sonarqube, dast]
     #needs: [build]
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
       

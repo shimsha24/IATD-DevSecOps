@@ -17,20 +17,20 @@ jobs:
         run: |
           cosign verify $IMAGE  --certificate-identity-regexp $CERT_IDENTITY_REGEXP  --certificate-oidc-issuer $GITHUB_ISSUER
       
-    #steps:
-      #- uses: azure/login@v1
-      #  with:
-      #    creds: ${{ secrets.AZURE_CREDENTIALS }}
+     #steps:
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      #- name: Deploy Container App
-      #  uses: azure/container-apps-deploy-action@v1
-      #  with:
-      #    imageToDeploy: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
-      #    containerAppName: devops-app
-      #    containerAppEnvironment: devops-app-env
-      #    resourceGroup: devsecops-lab
-      #    location: australiaeast
-      #    targetPort: 5000
+      - name: Deploy Container App
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          imageToDeploy: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
+          containerAppName: devops-app
+          containerAppEnvironment: devops-app-env
+          resourceGroup: devsecops-lab
+          location: australiaeast
+          targetPort: 5000
  
   submit_results:
     needs: [deploy]
