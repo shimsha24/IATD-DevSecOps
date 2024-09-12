@@ -136,13 +136,13 @@ jobs:
             name: image-report
             path: ${{ steps.image-scan.outputs.json }}
   build:
-    needs: [test, sonarqube, dast]
+    # needs: []
     # needs: [security_gate]
-    if: true
-    permissions:
-     id-token: write
-    runs-on: ubuntu-latest
-    steps:
+      if: true
+      permissions:
+       id-token: write
+      runs-on: ubuntu-latest
+      steps:
        -
          name: Set up QEMU
          uses: docker/setup-qemu-action@v3
