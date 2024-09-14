@@ -136,7 +136,7 @@ jobs:
             name: image-report
             path: ${{ steps.image-scan.outputs.json }}
   build:
-    # needs: []
+    # needs: [test]
       needs: [security_gate]
       if: true
       permissions:
