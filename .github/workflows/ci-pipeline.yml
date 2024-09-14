@@ -136,8 +136,8 @@ jobs:
             name: image-report
             path: ${{ steps.image-scan.outputs.json }}
   build:
-    # needs: [test]
-      needs: [security_gate]
+     # needs: [test, sonarqube]
+     # needs: [security_gate]
       if: true
       permissions:
        id-token: write
@@ -223,7 +223,7 @@ jobs:
 
   submit_reports:
     needs: [test, sonarqube, dast, build]
-    #needs: [build]
+   # needs: [build]
     if: true
     runs-on: ubuntu-latest
     #steps:
