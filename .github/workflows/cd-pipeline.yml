@@ -6,17 +6,30 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      
-      - name: Install Cosign
-        uses: sigstore/cosign-installer@v3.4.0
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy Container App
+      uses: azure/container-apps-deploy-action@v1
+      with:
+        imageToDeploy: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
+        containerAppName: devops-app
+        containerAppEnvironment: devops-app-env
+        resourceGroup: devsecops-lab
+        location: australiaeast
+        targetPort: 5000
+
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@v3.4.0
     
-      - name: Verify image signature
-        env:
+    - name: Verify image signature
+      env:
             IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
             GITHUB_ISSUER: https://token.actions.githubusercontent.com
            # CERT_IDENTITY_REGEXP: https://github.com/.*/devsecops-lab-app/.github/workflows/ci-pipeline.yml.*
             CERT_IDENTITY_REGEXP: https://github.com/.*/IATD-DevSecOps/.github/workflows/ci-pipeline.yml.*
-        run: |
+      run: |
             cosign verify $IMAGE  --certificate-identity-regexp $CERT_IDENTITY_REGEXP  --certificate-oidc-issuer $GITHUB_ISSUER      
  
   submit_results:
@@ -27,6 +40,9 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Install jq
+        run: sudo apt-get install jq    
 
       - name: Azure CLI script
         id: token-gen
