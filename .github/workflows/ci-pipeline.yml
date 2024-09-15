@@ -79,7 +79,7 @@ jobs:
 
       - uses: azure/login@v1
         with:
-            creds: ${{ secrets.AZURE_CREDENTIAL }}
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
     
       - name: Deploy DAST Container App
         uses: azure/container-apps-deploy-action@v1
