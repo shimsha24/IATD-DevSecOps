@@ -1,0 +1,1762 @@
+{
+    "version": "2.2.0",
+    "summary": {
+      "title": "CI/CD Pipeline",
+      "owner": "Shimsha",
+      "description": "CI/CD pipeline for DevSecOps labs ",
+      "id": 0
+    },
+    "detail": {
+      "contributors": [],
+      "diagrams": [
+        {
+          "id": 0,
+          "title": "CI Pipeline",
+          "diagramType": "STRIDE",
+          "placeholder": "New STRIDE diagram description",
+          "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+          "version": "2.2.0",
+          "cells": [
+            {
+              "position": {
+                "x": 314.9999999999995,
+                "y": -410
+              },
+              "size": {
+                "width": 140,
+                "height": 270
+              },
+              "shape": "trust-boundary-box",
+              "attrs": {
+                "headerText": {
+                  "text": "SVC"
+                }
+              },
+              "zIndex": -1,
+              "id": "52ef9827-f7de-454e-8cec-90a51cb176df",
+              "data": {
+                "type": "tm.BoundaryBox",
+                "name": "SVC",
+                "description": "",
+                "isTrustBoundary": true,
+                "hasOpenThreats": false
+              }
+            },
+            {
+              "position": {
+                "x": 489.99999999999955,
+                "y": -400
+              },
+              "size": {
+                "width": 460,
+                "height": 400
+              },
+              "shape": "trust-boundary-box",
+              "attrs": {
+                "headerText": {
+                  "text": "      Pipeline Executor"
+                }
+              },
+              "zIndex": -1,
+              "id": "59c92ad8-ec07-47ac-a56d-d35fd00b4a9b",
+              "data": {
+                "type": "tm.BoundaryBox",
+                "name": "      Pipeline Executor",
+                "description": "",
+                "isTrustBoundary": true,
+                "hasOpenThreats": false
+              }
+            },
+            {
+              "position": {
+                "x": 585,
+                "y": 12
+              },
+              "size": {
+                "width": 350,
+                "height": 140
+              },
+              "shape": "trust-boundary-box",
+              "attrs": {
+                "headerText": {
+                  "text": "Internal instance"
+                }
+              },
+              "zIndex": -1,
+              "id": "e19a5066-72d1-415e-9755-43ba009c19c9",
+              "data": {
+                "type": "tm.BoundaryBox",
+                "name": "Internal instance",
+                "description": "",
+                "isTrustBoundary": true,
+                "hasOpenThreats": false
+              }
+            },
+            {
+              "position": {
+                "x": 10,
+                "y": -235
+              },
+              "size": {
+                "width": 112.5,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Developer"
+                },
+                "body": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "actor",
+              "zIndex": 1,
+              "id": "8914a427-7362-425f-84e6-c45cac8328d0",
+              "data": {
+                "type": "tm.Actor",
+                "name": "Developer",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": true,
+                "providesAuthentication": false,
+                "threats": [
+                  {
+                    "id": "8856dd82-8a39-4d57-be47-8bc3dad8a234",
+                    "title": "Developer commits secret to Git",
+                    "status": "Open",
+                    "severity": "High",
+                    "type": "Spoofing",
+                    "description": "A developer commits secrets to version control either\naccidentally or on purpose. An angry employee with read access to the\nrepository finds the secrets and proceeds to use them to steal end-user\ndata.",
+                    "mitigation": "• Use something like git-secrets in repositories to help detect, flag, and block merge\nrequests which may contain secrets\n• Ensure the company is using secure secret management techniques such as tools\nlike Hashicorp Vault\n• Ensure secrets are stored encrypted at rest\n• Adhere to the principal of \"Need to Know\" and ensure that production secrets are\nnot shared with individuals who don't have a need to know\n• Adhere to the principal of \"Least Privilege\" and ensure secrets only have the the\npermissions to fulfill their use case\n• Ensure logging is enabled so that secret usage can be tracked to the system and/or\nuser who acquired and used them\n• Ensure version control system is only available on the corporate VPN",
+                    "modelType": "STRIDE",
+                    "new": false,
+                    "number": 3,
+                    "score": ""
+                  }
+                ]
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "dc9e6917-beee-4895-875e-6d7b61bf0d39",
+              "source": {
+                "cell": "8914a427-7362-425f-84e6-c45cac8328d0"
+              },
+              "target": {
+                "cell": "2f7750cb-6641-430c-9a3d-355293dbaaef"
+              },
+              "vertices": [
+                {
+                  "x": 140,
+                  "y": -200
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "f1c5cc70-1390-414d-9ddd-178a0bbf330c",
+              "source": {
+                "x": 256,
+                "y": -203
+              },
+              "target": {
+                "cell": "42045c33-dfbd-41c8-8adf-4508717b13cd"
+              },
+              "vertices": [
+                {
+                  "x": 300,
+                  "y": -203
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "6530bdd2-89b5-43eb-b828-c7b94c8f2bba",
+              "source": {
+                "cell": "42045c33-dfbd-41c8-8adf-4508717b13cd"
+              },
+              "target": {
+                "cell": "db9f88df-c3da-46c8-8eca-9bc47dc8aa09"
+              },
+              "vertices": []
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "0a1cbb72-4849-4465-ac94-d919358c7984",
+              "source": {
+                "x": 580,
+                "y": -115
+              },
+              "target": {
+                "cell": "db9f88df-c3da-46c8-8eca-9bc47dc8aa09"
+              },
+              "vertices": [
+                {
+                  "x": 600,
+                  "y": -150
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "5ba9b8a6-4890-4656-be51-0e2665185580",
+              "source": {
+                "x": 660,
+                "y": -190
+              },
+              "target": {
+                "cell": "bdef7751-9d0f-4193-858d-2177a25f3092"
+              },
+              "vertices": [
+                {
+                  "x": 680,
+                  "y": -160
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "d3d44344-65ed-44c8-b8a9-8144c202da21",
+              "source": {
+                "x": 783,
+                "y": -78
+              },
+              "target": {
+                "cell": "94d92d0d-1879-4248-a1f0-71f7276aa7fe"
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "79e1da76-46b4-49e9-bf2e-7a9a001866b3",
+              "source": {
+                "cell": "b5c8df91-7fcf-4b47-8189-bf10dd2f16f3"
+              },
+              "target": {
+                "cell": "f21d55e1-ac9c-49f4-ac1e-7c6b5bc692b9"
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "9386d63b-6787-4bf3-a302-4eb03b83c6ee",
+              "source": {
+                "x": 728,
+                "y": -478
+              },
+              "target": {
+                "cell": "59520a23-6a6a-4fab-a335-8c03ef71cca8"
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "1f782542-5356-414f-adb4-ed0331f7e926",
+              "source": {
+                "cell": "c10ac7ae-add6-4c3a-bb0a-8a215a0cb573"
+              },
+              "target": {
+                "cell": "27f09bdb-50b7-47ac-8012-b3a446ade22c"
+              }
+            },
+            {
+              "shape": "trust-boundary-curve",
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Boundary",
+                "name": "",
+                "description": "",
+                "isTrustBoundary": true,
+                "hasOpenThreats": false
+              },
+              "id": "19693b74-67c3-42d1-b391-b79eec2809ef",
+              "source": {
+                "x": 90,
+                "y": -330
+              },
+              "target": {
+                "x": 70,
+                "y": -50
+              },
+              "vertices": [
+                {
+                  "x": 300,
+                  "y": -190
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "a27c8fff-6d2a-4263-8632-b63cd458a0f4",
+              "source": {
+                "x": 450,
+                "y": 10
+              },
+              "target": {
+                "cell": "af67541c-887f-4b85-b875-7ee481acd793"
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "388c9ba7-4917-47f4-9822-e8d4f88e7447",
+              "source": {
+                "x": 382,
+                "y": -235
+              },
+              "target": {
+                "cell": "6588cb8c-8f17-4d93-96b1-be573a17f8d2"
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "117787b2-2d66-40ee-b55a-9353274ab8db",
+              "source": {
+                "cell": "db9f88df-c3da-46c8-8eca-9bc47dc8aa09"
+              },
+              "target": {
+                "cell": "26581593-bc59-4f57-bd2a-59b6b903eed9"
+              },
+              "vertices": [
+                {
+                  "x": 700,
+                  "y": -201.5
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "a149c99e-8ddb-4549-a2ac-a1914acc9b96",
+              "source": {
+                "x": 790,
+                "y": -200
+              },
+              "target": {
+                "cell": "7279eba6-fde4-42a0-9ea7-dc39e265ebce"
+              }
+            },
+            {
+              "shape": "trust-boundary-curve",
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Boundary",
+                "name": "",
+                "description": "",
+                "isTrustBoundary": true,
+                "hasOpenThreats": false
+              },
+              "id": "af017147-b865-4321-b9eb-3104f14a4c0d",
+              "source": {
+                "x": 1200,
+                "y": -310
+              },
+              "target": {
+                "x": 1230,
+                "y": -100
+              },
+              "vertices": [
+                {
+                  "x": 1010,
+                  "y": -270
+                },
+                {
+                  "x": 1010,
+                  "y": -140
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "d8cd37a9-1acb-4d1c-bf48-e86299c49e8f",
+              "source": {
+                "cell": "7279eba6-fde4-42a0-9ea7-dc39e265ebce"
+              },
+              "target": {
+                "x": 1050,
+                "y": -200
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "a40a9471-5026-482c-889f-5befe59716eb",
+              "source": {
+                "x": 625,
+                "y": -240
+              },
+              "target": {
+                "cell": "59520a23-6a6a-4fab-a335-8c03ef71cca8"
+              },
+              "vertices": [
+                {
+                  "x": 625,
+                  "y": -270
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "4772a6f5-1977-40ea-a1ce-af61b5d41f7d",
+              "source": {
+                "x": 625,
+                "y": -170
+              },
+              "target": {
+                "cell": "f21d55e1-ac9c-49f4-ac1e-7c6b5bc692b9"
+              }
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "f2755841-5abd-4935-ba4d-e44292452c70",
+              "source": {
+                "x": 760,
+                "y": -510
+              },
+              "target": {
+                "x": 1130,
+                "y": -240
+              },
+              "vertices": [
+                {
+                  "x": 1080,
+                  "y": -480
+                },
+                {
+                  "x": 1130,
+                  "y": -320
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "0b14b699-5cb2-48b5-9454-0753fa392a45",
+              "source": {
+                "x": 908,
+                "y": -45
+              },
+              "target": {
+                "x": 1130,
+                "y": -180
+              },
+              "vertices": [
+                {
+                  "x": 1060,
+                  "y": -120
+                }
+              ]
+            },
+            {
+              "shape": "flow",
+              "attrs": {
+                "line": {
+                  "stroke": "#333333",
+                  "targetMarker": {
+                    "name": "block"
+                  },
+                  "sourceMarker": {
+                    "name": ""
+                  },
+                  "strokeDasharray": null
+                }
+              },
+              "width": 200,
+              "height": 100,
+              "zIndex": 10,
+              "connector": "smooth",
+              "data": {
+                "type": "tm.Flow",
+                "name": "Data Flow",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isBidirectional": false,
+                "isEncrypted": false,
+                "isPublicNetwork": false,
+                "protocol": "",
+                "threats": []
+              },
+              "id": "e33b8f0a-e6a5-4b95-b28c-02321cbc6075",
+              "source": {
+                "x": 700,
+                "y": -510
+              },
+              "target": {
+                "cell": "6588cb8c-8f17-4d93-96b1-be573a17f8d2"
+              },
+              "vertices": [
+                {
+                  "x": 410,
+                  "y": -490
+                }
+              ]
+            },
+            {
+              "position": {
+                "x": 354.9999999999995,
+                "y": -240
+              },
+              "size": {
+                "width": 60,
+                "height": 70
+              },
+              "attrs": {
+                "text": {
+                  "text": "Process\nCode\nPush"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 12,
+              "id": "42045c33-dfbd-41c8-8adf-4508717b13cd",
+              "data": {
+                "type": "tm.Process",
+                "name": "Process\nCode\nPush",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 324.9999999999995,
+                "y": -330
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Git Repository"
+                },
+                "topLine": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                },
+                "bottomLine": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "store",
+              "zIndex": 13,
+              "id": "6588cb8c-8f17-4d93-96b1-be573a17f8d2",
+              "data": {
+                "type": "tm.Store",
+                "name": "Git Repository",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": true,
+                "isALog": false,
+                "isEncrypted": false,
+                "isSigned": false,
+                "storesCredentials": false,
+                "storesInventory": false,
+                "threats": [
+                  {
+                    "id": "56aadd8a-6217-4fdd-9735-40e03fbb147b",
+                    "title": "Cloning & Manipulating GitHub",
+                    "status": "Open",
+                    "severity": "Medium",
+                    "type": "Tampering",
+                    "description": "Adversaries may inject malicious code directly into exposed libraries or submit fraudulent pull requests, introducing backdoors, executing code injection attacks, or leverage proof-of-concept code. Attackers have been seen cloning GitHub repositories and adding malicious code to forks designed to infect developer systems and sensitive files that included software keys.",
+                    "mitigation": "• Regularly updating and patching dependencies is critical for addressing known vulnerabilities and security issues. \n• Security defenders are also advised to stay informed on emerging security alerts providing updates related to third-party libraries used by their organisations.\n• Software composition analysis (SCA) tools can enhance security by scanning repositories for vulnerable dependencies and automating remediation or flagging issues for manual review.",
+                    "modelType": "STRIDE",
+                    "new": false,
+                    "number": 8,
+                    "score": ""
+                  }
+                ]
+              }
+            },
+            {
+              "position": {
+                "x": 196,
+                "y": -230
+              },
+              "size": {
+                "width": 60,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Git Push"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 14,
+              "id": "2f7750cb-6641-430c-9a3d-355293dbaaef",
+              "data": {
+                "type": "tm.Process",
+                "name": "Git Push",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 314.9999999999995,
+                "y": -18
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Dependency Repository"
+                },
+                "topLine": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                },
+                "bottomLine": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "store",
+              "zIndex": 15,
+              "id": "1466c8fc-ef02-43eb-8d45-344136f529c6",
+              "data": {
+                "type": "tm.Store",
+                "name": "Dependency Repository",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": true,
+                "isALog": false,
+                "isEncrypted": false,
+                "isSigned": false,
+                "storesCredentials": false,
+                "storesInventory": false,
+                "threats": [
+                  {
+                    "id": "ced95cc2-b34a-4fef-98a7-2b9a8a8b76a8",
+                    "title": "Insecure Dependencies and Libraries",
+                    "status": "Open",
+                    "severity": "Medium",
+                    "type": "Tampering",
+                    "description": "Libraries that are not up-to-date or from unverified sources might contain potential vulnerabilities that could be exploited by malicious individuals.",
+                    "mitigation": "• Regularly updating third-party libraries and dependencies helps to patch security vulnerabilities and ensure the use of the latest features.\n• Ensuring the authenticity and integrity of third-party libraries before integrating them into the pipeline safeguards against supply chain attacks.\n• Relying only on reputable and trusted sources for third-party libraries reduces the likelihood of introducing malicious code.\n",
+                    "modelType": "STRIDE",
+                    "new": false,
+                    "number": 7,
+                    "score": ""
+                  }
+                ]
+              }
+            },
+            {
+              "position": {
+                "x": 600,
+                "y": -235
+              },
+              "size": {
+                "width": 70,
+                "height": 70
+              },
+              "attrs": {
+                "text": {
+                  "text": "CI \npipeline \nexecution"
+                },
+                "body": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 16,
+              "id": "db9f88df-c3da-46c8-8eca-9bc47dc8aa09",
+              "data": {
+                "type": "tm.Process",
+                "name": "CI \npipeline \nexecution",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": true,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": [
+                  {
+                    "id": "8ffc62e1-3940-4c4e-80cb-3580d9a9a7e3",
+                    "title": "Abuse of GitHub Actions & CI/CD Pipelines",
+                    "status": "Open",
+                    "severity": "Medium",
+                    "type": "Tampering",
+                    "description": "Threat actors can exploit GitHub’s continuous integration/continuous deployment (CI/CD) pipelines and automation features, such as GitHub Actions, to automate malicious activities and orchestrate attacks. By leveraging these capabilities, attackers deploy malware, exfiltrate data, or execute unauthorised commands within CI/CD workflows.",
+                    "mitigation": "• Enforce least privilege access controls to restrict the execution of CI/CD workflows and automation scripts and reduce the attack surface. \n• Pre-defined templates and secure coding practices can also help prevent injection attacks and unauthorised code execution.\n• Security teams may also adopt logging and auditing features in order to more thoroughly track changes and activities within CI/CD pipelines. ",
+                    "modelType": "STRIDE",
+                    "new": false,
+                    "number": 9,
+                    "score": ""
+                  }
+                ]
+              }
+            },
+            {
+              "position": {
+                "x": 730,
+                "y": -230
+              },
+              "size": {
+                "width": 60,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Security \nGate"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 17,
+              "id": "26581593-bc59-4f57-bd2a-59b6b903eed9",
+              "data": {
+                "type": "tm.Process",
+                "name": "Security \nGate",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 869.9999999999995,
+                "y": -235
+              },
+              "size": {
+                "width": 80,
+                "height": 70
+              },
+              "attrs": {
+                "text": {
+                  "text": "Build, \nsign \nand \npublish \nimage"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 18,
+              "id": "7279eba6-fde4-42a0-9ea7-dc39e265ebce",
+              "data": {
+                "type": "tm.Process",
+                "name": "Build, \nsign \nand \npublish \nimage",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 520,
+                "y": -124.99999999999991
+              },
+              "size": {
+                "width": 80,
+                "height": 80
+              },
+              "attrs": {
+                "text": {
+                  "text": "Fetch \ndependencies"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 19,
+              "id": "af67541c-887f-4b85-b875-7ee481acd793",
+              "data": {
+                "type": "tm.Process",
+                "name": "Fetch \ndependencies",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 720,
+                "y": -114.99999999999996
+              },
+              "size": {
+                "width": 70,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "DAST"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 20,
+              "id": "bdef7751-9d0f-4193-858d-2177a25f3092",
+              "data": {
+                "type": "tm.Process",
+                "name": "DAST",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 840,
+                "y": -67.99999999999997
+              },
+              "size": {
+                "width": 80,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Deploy \nand \ntest"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 21,
+              "id": "94d92d0d-1879-4248-a1f0-71f7276aa7fe",
+              "data": {
+                "type": "tm.Process",
+                "name": "Deploy \nand \ntest",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 1050,
+                "y": -240
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Container \nrepository \nDockerhub"
+                },
+                "topLine": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                },
+                "bottomLine": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "store",
+              "zIndex": 22,
+              "id": "db06c058-9587-48b5-8163-45375ab31a18",
+              "data": {
+                "type": "tm.Store",
+                "name": "Container \nrepository \nDockerhub",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": true,
+                "isALog": false,
+                "isEncrypted": false,
+                "isSigned": false,
+                "storesCredentials": false,
+                "storesInventory": false,
+                "threats": [
+                  {
+                    "id": "137043b5-3f54-43d4-a371-d52e912eca75",
+                    "title": "Tampering application codes at Docker Hub",
+                    "status": "Open",
+                    "severity": "Medium",
+                    "type": "Tampering",
+                    "description": "The application code may be tampered with by attackers to include vulnerabilities. It can result in the attacker accessing a user’s application image and tamper with its codes. If the image is not signed, the change will not be detected during download. In addition, Docker images may contain inherent vulnerabilities which the developers are not aware of until they are deployed in a production environment.",
+                    "mitigation": "• Enforce strong password,  two-factor authentication or multi factor  authentication.\n• It is recommended that an image be kept minimal so that the attack surfaces can be reduced.\n• It is advised that a developer digitally sign image with Docker Content Trust that is attached to the \n   Notary server, which is used for validating the integrity of the images.\n• Keep Docker images secure with regular vulnerability scans.",
+                    "modelType": "STRIDE",
+                    "new": false,
+                    "number": 25,
+                    "score": ""
+                  }
+                ]
+              }
+            },
+            {
+              "position": {
+                "x": 570,
+                "y": -350
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Pipeline artifacts store"
+                },
+                "topLine": {
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                },
+                "bottomLine": {
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "store",
+              "zIndex": 23,
+              "id": "59520a23-6a6a-4fab-a335-8c03ef71cca8",
+              "data": {
+                "type": "tm.Store",
+                "name": "Pipeline artifacts store",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isALog": false,
+                "isEncrypted": false,
+                "isSigned": false,
+                "storesCredentials": false,
+                "storesInventory": false,
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 595,
+                "y": 42
+              },
+              "size": {
+                "width": 80,
+                "height": 70
+              },
+              "attrs": {
+                "text": {
+                  "text": "\nSonarcube \ncode \nanalysis"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 24,
+              "id": "f21d55e1-ac9c-49f4-ac1e-7c6b5bc692b9",
+              "data": {
+                "type": "tm.Process",
+                "name": "\nSonarcube \ncode \nanalysis",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 730,
+                "y": 52
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Sonarcube\n Database"
+                },
+                "topLine": {
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                },
+                "bottomLine": {
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "store",
+              "zIndex": 25,
+              "id": "b5c8df91-7fcf-4b47-8189-bf10dd2f16f3",
+              "data": {
+                "type": "tm.Store",
+                "name": "Sonarcube\n Database",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "isALog": false,
+                "isEncrypted": false,
+                "isSigned": false,
+                "storesCredentials": false,
+                "storesInventory": false,
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 700,
+                "y": -538
+              },
+              "size": {
+                "width": 60,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Manage"
+                },
+                "body": {
+                  "stroke": "#333333",
+                  "strokeWidth": 1.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "process",
+              "zIndex": 26,
+              "id": "27f09bdb-50b7-47ac-8012-b3a446ade22c",
+              "data": {
+                "type": "tm.Process",
+                "name": "Manage",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": false,
+                "handlesCardPayment": false,
+                "handlesGoodsOrServices": false,
+                "isWebApplication": false,
+                "privilegeLevel": "",
+                "threats": []
+              }
+            },
+            {
+              "position": {
+                "x": 660,
+                "y": -637
+              },
+              "size": {
+                "width": 140,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Administrator"
+                },
+                "body": {
+                  "stroke": "red",
+                  "strokeWidth": 2.5,
+                  "strokeDasharray": null
+                }
+              },
+              "visible": true,
+              "shape": "actor",
+              "zIndex": 27,
+              "id": "c10ac7ae-add6-4c3a-bb0a-8a215a0cb573",
+              "data": {
+                "type": "tm.Actor",
+                "name": "Administrator",
+                "description": "",
+                "outOfScope": false,
+                "reasonOutOfScope": "",
+                "hasOpenThreats": true,
+                "providesAuthentication": false,
+                "threats": [
+                  {
+                    "id": "0b4b5b02-75a5-4f44-bab1-527883419b3a",
+                    "title": "Compromised admin access",
+                    "status": "Open",
+                    "severity": "High",
+                    "type": "Spoofing",
+                    "description": "Compromised admin access to a CI/CD Pipeline account can lead to a variety of threats such as execution and lateral movement, and software supply chain attacks. Attackers may use techniques like creating additional local accounts to maintain their foothold.",
+                    "mitigation": "• Minimize the use of long-term credentials. \n• Utilise two-person rules (2PR) for all code updates.\n• Secure user accounts.\n• Implement least-privilege policies for CI/CD access.\n",
+                    "modelType": "STRIDE",
+                    "new": false,
+                    "number": 21,
+                    "score": ""
+                  }
+                ]
+              }
+            },
+            {
+              "position": {
+                "x": 10,
+                "y": -124.99999999999994
+              },
+              "size": {
+                "width": 112.5,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Developer \nLocal environment\n Boundary"
+                }
+              },
+              "visible": true,
+              "shape": "td-text-block",
+              "zIndex": 28,
+              "id": "75bc05e0-cbab-4577-955c-4e4199388697",
+              "data": {
+                "type": "tm.Text",
+                "name": "Developer \nLocal environment\n Boundary",
+                "hasOpenThreats": false
+              }
+            },
+            {
+              "position": {
+                "x": 1123,
+                "y": -170
+              },
+              "size": {
+                "width": 112.5,
+                "height": 60
+              },
+              "attrs": {
+                "text": {
+                  "text": "Registry \nBoundary"
+                }
+              },
+              "visible": true,
+              "shape": "td-text-block",
+              "zIndex": 29,
+              "id": "a0bca029-eb5e-4a55-937e-d72071a9f2b9",
+              "data": {
+                "type": "tm.Text",
+                "name": "Registry \nBoundary",
+                "hasOpenThreats": false
+              }
+            }
+          ],
+          "description": "CI pipeline for DevSecOps labs "
+        }
+      ],
+      "diagramTop": 1,
+      "reviewer": "",
+      "threatTop": 25
+    }
+  }
